@@ -2,12 +2,13 @@
 
 Run it with:  streamlit run streamlit_app.py
 """
+import os
 import sqlite3
 
 import pandas as pd
 import streamlit as st
 
-from src.search import search_archive
+from search import search_archive
 
 DB_PATH = "archivelens.db"
 
@@ -45,14 +46,14 @@ with tab_search:
                     ).fetchone()
                     conn.close()
                     left, right = st.columns(2)
-                    left.image(row[0], caption="Scanned page")
+                    left.image(os.path.basename(row[0]), caption="Scanned page")
                     right.text(row[1])
 
 # ---------- Tab 2: OCR results ----------
 with tab_ocr:
     st.write("How accurate was OCR? Lower Character Error Rate (CER) is better.")
-    st.dataframe(pd.read_csv("data/ocr_results.csv"), hide_index=True)
-    st.image("images/cleaning_example.png", caption="Image cleaning with OpenCV on the most damaged page")
+    st.dataframe(pd.read_csv("ocr_results.csv"), hide_index=True)
+    st.image("cleaning_example.png", caption="Image cleaning with OpenCV on the most damaged page")
 
 # ---------- Tab 3: All documents ----------
 with tab_all:
@@ -60,4 +61,4 @@ with tab_all:
     docs = pd.read_sql("SELECT id, source, date, category, word_count FROM documents", conn)
     conn.close()
     st.dataframe(docs, hide_index=True)
-    st.image("images/sample_pages.png", caption="The 5 sample pages")
+    st.image("sample_pages.png", caption="The 5 sample pages")

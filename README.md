@@ -6,7 +6,7 @@
 
 Archives hold thousands of scanned pages that nobody can search. ArchiveLens is a small, working version of the pipeline that makes them searchable: clean the scan, read it with OCR, check how accurate the OCR is, store it in a database with a full-text index, and serve search results through an API.
 
-![Sample pages](images/sample_pages.png)
+![Sample pages](sample_pages.png)
 
 ## Pipeline
 
@@ -33,7 +33,7 @@ OCR accuracy, measured against the ground-truth text (lower CER is better):
 
 Image cleaning matters most on damaged pages: on doc_05 it cut character errors from 55.8% to 14.3%.
 
-![Cleaning example](images/cleaning_example.png)
+![Cleaning example](cleaning_example.png)
 
 Example API response for `GET /search?q=steamer`:
 
@@ -67,24 +67,23 @@ Example API response for `GET /search?q=steamer`:
 # 2. Install Python packages
 pip install -r requirements.txt
 # 3. Run the notebook once to build archivelens.db, then start the API
-uvicorn api.main:app --reload
+uvicorn main:app --reload
 # 4. Open http://127.0.0.1:8000/docs to try the search
 ```
 
-## Project structure
+## Project files
 
-```text
-archivelens/
-  ArchiveLens_Mini.ipynb   full pipeline, step by step, with outputs
-  src/search.py            FTS5 query building, BM25 search, document lookup
-  api/main.py              FastAPI app
-  streamlit_app.py         simple web app for searching the archive
-  archivelens.db           SQLite database built by the notebook
-  data/samples/            the 5 generated sample scans
-  data/ground_truth.json   correct text for each page
-  data/ocr_results.csv     OCR accuracy results
-  images/                  figures used in this README
-```
+| File | What it is |
+| --- | --- |
+| `ArchiveLens_Mini.ipynb` | Full pipeline, step by step, with outputs |
+| `search.py` | FTS5 query building, BM25 search, document lookup |
+| `main.py` | FastAPI app |
+| `streamlit_app.py` | Simple web app for searching the archive |
+| `archivelens.db` | SQLite database built by the notebook |
+| `doc_01.png` to `doc_05.png` | The 5 generated sample scans |
+| `ground_truth.json` | Correct text for each page |
+| `ocr_results.csv` | OCR accuracy results |
+| `sample_pages.png`, `cleaning_example.png` | Figures used in this README |
 
 ## Limitations
 

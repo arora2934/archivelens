@@ -1,7 +1,7 @@
 """ArchiveLens API: search a small OCR-processed archive."""
 from fastapi import FastAPI, HTTPException, Query
 
-from src.search import get_document, search_archive
+from search import get_document, search_archive
 
 DB_PATH = "archivelens.db"
 app = FastAPI(title="ArchiveLens API", description="Search OCR text from scanned archive pages.")
