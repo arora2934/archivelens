@@ -4,6 +4,8 @@
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/arora2934/archivelens/blob/main/ArchiveLens_Mini.ipynb)
 
+**🔗 Live demo: [archivelens-arora.streamlit.app](https://archivelens-arora.streamlit.app/)**
+
 Archives hold thousands of scanned pages that nobody can search. ArchiveLens is a small, working version of the pipeline that makes them searchable: clean the scan, read it with OCR, check how accurate the OCR is, store it in a database with a full-text index, and serve search results through an API.
 
 ![Sample pages](sample_pages.png)
