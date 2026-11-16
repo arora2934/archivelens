@@ -1,0 +1,10 @@
+pytesseract
+opencv-python-headless
+pillow
+numpy
+pandas
+matplotlib
+fastapi
+uvicorn
+httpx
+streamlit
